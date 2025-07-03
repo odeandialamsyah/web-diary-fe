@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Diary Berbasis Emosi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="diary-paper.css" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #fff0f6 0%, #ffe4ec 100%);
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex flex-col items-center justify-center p-2 font-sans bg-gradient-to-br from-pink-100 via-pink-50 to-rose-100"
+  >
+    <!-- Navbar -->
+    <nav
+      class="w-full bg-white/80 backdrop-blur-md shadow-sm py-3 px-4 mb-4 sticky top-0 z-10"
+    >
+      <div class="max-w-2xl mx-auto flex items-center justify-between">
+        <div class="flex items-center">
+          <img
+            src="/asset/centi.jpg"
+            alt="Logo"
+            class="rounded-full w-10 h-10 mr-2 inline-block align-middle"
+          />
+          <span
+            class="text-lg font-bold text-pink-500 tracking-tight align-middle"
+            >CentiMeter</span
+          >
+        </div>
+        <ul class="flex gap-6 text-sm text-gray-400">
+          <li>
+            <a href="index.html" class="text-pink-600 font-semibold">Diary</a>
+          </li>
+          <li>
+            <a href="tren.html" class="hover:text-pink-600 transition">Tren</a>
+          </li>
+          <li>
+            <a href="riwayat.html" class="hover:text-pink-600 transition"
+              >Riwayat</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header
+      class="w-full max-w-2xl mx-auto py-4 px-4 flex flex-col items-center"
+    >
+      <h1
+        class="text-4xl md:text-5xl font-extrabold text-pink-400 mb-2 text-center tracking-tight"
+      >
+        Web Diary Emosi
+      </h1>
+      <p class="text-pink-400 text-center text-base md:text-lg">
+        Catat harimu, analisis emosimu, dan lihat perkembanganmu setiap saat.
+      </p>
+    </header>
+
+    <main class="w-full max-w-2xl mx-auto flex-1 flex flex-col gap-8">
+      <!-- Pesan Loading dan Tidak Ada Entri -->
+      <div
+        id="loadingMessage"
+        class="hidden text-center text-sm text-blue-500 mb-2"
+      >
+        Memuat data...
+      </div>
+      <div
+        id="noEntriesMessage"
+        class="hidden text-center text-sm text-gray-400 mb-2"
+      >
+        Belum ada entri diary.
+      </div>
+
+      <!-- Diary Entry Form Card -->
+      <section
+        class="bg-white/90 rounded-2xl shadow-lg p-6 md:p-8 flex flex-col gap-4 border border-pink-100"
+      >
+        <h2 class="text-2xl font-bold text-pink-400 mb-2">Tuliskan Harimu</h2>
+        <div
+          id="messageArea"
+          class="hidden p-3 mb-4 rounded-md text-sm"
+          role="alert"
+        ></div>
+        <form id="diaryForm" class="space-y-4">
+          <div>
+            <label for="title" class="block text-sm font-medium text-pink-400"
+              >Judul</label
+            >
+            <input
+              type="text"
+              id="title"
+              name="title"
+              required
+              placeholder="Misalnya: Hari Ini Aku Belajar Hal Baru!"
+              class="mt-1 block w-full px-3 py-2 border border-pink-200 rounded-md shadow-sm focus:outline-none focus:ring-pink-200 focus:border-pink-400 bg-pink-50/50 text-gray-700 sm:text-sm"
+            />
+          </div>
+          <div>
+            <label for="content" class="block text-sm font-medium text-pink-400"
+              >Isi Diary</label
+            >
+            <div class="diary-paper mt-1">
+              <textarea
+                id="content"
+                name="content"
+                rows="10"
+                required
+                placeholder="Ceritakan bagaimana perasaanmu hari ini, detailnya membantu AI menganalisis emosi..."
+                class="diary-handwriting w-full bg-transparent focus:outline-none"
+              ></textarea>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-400 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-200 transition"
+          >
+            Simpan Entri
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="w-full max-w-2xl mx-auto py-4 px-4 text-center text-xs text-pink-300 mt-8"
+    >
+      &copy; 2025 Web Diary Emosi. Dibuat dengan
+      <span class="text-pink-400">&#10084;</span> untuk kesehatan mental.
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

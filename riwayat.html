@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Riwayat Entri - Web Diary Emosi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="diary-paper.css" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #fff0f6 0%, #ffe4ec 100%);
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex flex-col items-center justify-center p-2 font-sans bg-gradient-to-br from-pink-100 via-pink-50 to-rose-100"
+  >
+    <!-- Navbar -->
+    <nav
+      class="w-full bg-white/80 backdrop-blur-md shadow-sm py-3 px-4 mb-4 sticky top-0 z-10"
+    >
+      <div class="max-w-2xl mx-auto flex items-center justify-between">
+        <div class="flex items-center">
+          <img
+            src="/asset/centi.jpg"
+            alt="Logo"
+            class="rounded-full w-10 h-10 mr-2 inline-block align-middle"
+          />
+          <span
+            class="text-lg font-bold text-pink-500 tracking-tight align-middle"
+            >CentiMeter</span
+          >
+        </div>
+        <ul class="flex gap-6 text-sm text-gray-400">
+          <li>
+            <a href="index.html" class="text-pink-400 font-semibold">Diary</a>
+          </li>
+          <li>
+            <a href="tren.html" class="hover:text-pink-400 transition">Tren</a>
+          </li>
+          <li>
+            <a href="riwayat.html" class="hover:text-pink-400 transition"
+              >Riwayat</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <header
+      class="w-full max-w-2xl mx-auto py-4 px-4 flex flex-col items-center"
+    >
+      <h1
+        class="text-3xl md:text-4xl font-extrabold text-pink-400 mb-2 text-center tracking-tight"
+      >
+        Riwayat Diary
+      </h1>
+      <p class="text-pink-400 text-center text-base md:text-lg">
+        Lihat semua catatan harianmu di sini.
+      </p>
+    </header>
+    <main class="w-full max-w-2xl mx-auto flex-1 flex flex-col gap-8">
+      <div
+        id="loadingMessage"
+        class="hidden text-center text-sm text-blue-500 mb-2"
+      >
+        Memuat data...
+      </div>
+      <div
+        id="noEntriesMessage"
+        class="hidden text-center text-sm text-gray-400 mb-2"
+      >
+        Belum ada entri diary.
+      </div>
+      <div id="diaryEntriesContainer" class="flex flex-col gap-4"></div>
+      <!-- Tambahkan konten riwayat lainnya di sini -->
+    </main>
+    <footer
+      class="w-full max-w-2xl mx-auto py-4 px-4 text-center text-xs text-purple-300 mt-8"
+    >
+      &copy; 2025 Web Diary Emosi. Dibuat dengan
+      <span class="text-pink-400">&#10084;</span> untuk kesehatan mental.
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

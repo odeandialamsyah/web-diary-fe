@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
+.diary-paper {
+  background: repeating-linear-gradient(
+    to bottom,
+    #fdf6e3,
+    #fdf6e3 34px,
+    #f5e9d7 35px,
+    #fdf6e3 36px
+  );
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(180, 150, 120, 0.08);
+  border: 1.5px solid #f3e8ff;
+  position: relative;
+}
+.diary-paper::before {
+  content: "";
+  position: absolute;
+  left: 48px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e0b7ff;
+  opacity: 0.5;
+  border-radius: 2px;
+}
+.diary-handwriting {
+  font-family: "Indie Flower", cursive;
+  font-size: 1.08rem;
+  color: #6d4c41;
+  background: transparent;
+  resize: vertical;
+  min-height: 220px;
+  line-height: 2.2;
+  padding-left: 60px !important;
+  padding-right: 18px !important;
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+  border: none;
+  box-shadow: none;
+}
+.diary-handwriting:focus {
+  outline: 2px solid #e0b7ff;
+  background: #f8f4ff;
+}
