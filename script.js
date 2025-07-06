@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sentimentChartCanvas = document.getElementById("sentimentChart");
   const noChartDataMessage = document.getElementById("noChartDataMessage");
 
-  const API_BASE_URL = "http://localhost:8080/api"; // Pastikan ini sesuai dengan port backend Anda
+  const API_BASE_URL = "https://amiable-playfulness-production.up.railway.app/api"; // Pastikan ini sesuai dengan port backend Anda
 
   let sentimentChartInstance = null; // Variabel untuk menyimpan instance Chart.js
   let emotionChartInstance = null; // Variabel untuk menyimpan instance Chart.js untuk emosi
