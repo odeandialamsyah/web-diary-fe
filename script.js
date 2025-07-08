@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sentimentChartCanvas = document.getElementById("sentimentChart");
   const noChartDataMessage = document.getElementById("noChartDataMessage");
 
-  const API_BASE_URL = "http://localhost:8080/api"; // Pastikan ini sesuai dengan port backend Anda
+  const API_BASE_URL = "http://localhost:8080/api/diary"; // Pastikan ini sesuai dengan port backend Anda
 
   let sentimentChartInstance = null; // Variabel untuk menyimpan instance Chart.js
   let emotionChartInstance = null; // Variabel untuk menyimpan instance Chart.js untuk emosi
@@ -70,6 +70,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Helper untuk ambil token
+  function getToken() {
+    return localStorage.getItem("token");
+  }
+
+  // Cek login, redirect jika belum login
+  if (
+    !getToken() &&
+    (window.location.pathname === "/" ||
+      window.location.pathname === "" ||
+      window.location.pathname.endsWith("index.html") ||
+      window.location.pathname.endsWith("tren.html") ||
+      window.location.pathname.endsWith("riwayat.html"))
+  ) {
+    window.location.href = "login.html";
+    return;
+  }
+
   // --- Fungsi Utama Fetching & Rendering ---
 
   // Fungsi untuk mengambil dan menampilkan entri diary
@@ -79,7 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
     diaryEntriesContainer.innerHTML = ""; // Kosongkan container sebelum memuat ulang
 
     try {
-      const response = await fetch(`${API_BASE_URL}/diary-entries`);
+      const response = await fetch(`${API_BASE_URL}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -438,10 +460,11 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.classList.add("opacity-50", "cursor-not-allowed");
 
       try {
-        const response = await fetch(`${API_BASE_URL}/diary-entries`, {
+        const response = await fetch(`${API_BASE_URL}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken()}`,
           },
           body: JSON.stringify({ title, content }),
         });
@@ -477,6 +500,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // LOGOUT BUTTON
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
+    });
+  }
+
   // Panggil fetchDiaryEntries sesuai halaman
   if (diaryEntriesContainer && loadingMessage && noEntriesMessage) {
     // Untuk riwayat.html
@@ -486,7 +519,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ambil data dan render chart saja
     async function fetchAndRenderChart() {
       try {
-        const response = await fetch(`${API_BASE_URL}/diary-entries`);
+        const response = await fetch(`${API_BASE_URL}`, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        });
         if (!response.ok)
           throw new Error(`HTTP error! status: ${response.status}`);
         const entries = await response.json();
